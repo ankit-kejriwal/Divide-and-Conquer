@@ -36,6 +36,7 @@ public class maxSubArray {
     }
 
     public static int dcapproach(int arr[],int low, int high){
+        // time complexity - nlogn
         int res =0,left_sum=0,right_sum=0;
         if(low == high){
             return arr[low];
@@ -58,6 +59,20 @@ public class maxSubArray {
         return Math.max(ans,left_sum+right_sum);
     }
 
+    public static int kadensAlgo(int[] arr){
+        // time complexity: O(n)
+        int res = 0, sum=0;
+        for(int i =0;i<arr.length;i++){
+            if(sum+arr[i]>0){
+                sum+= arr[i];
+            } else {
+                sum =0;
+            }
+            res = Math.max(sum,res);
+        }
+        return res;
+    }
+
     public static void main(String[] args){
         int[] arr = {2,-5,4,6,4,-5,-6,1,2,-8};
         int res = bruteForce(arr);
@@ -66,5 +81,7 @@ public class maxSubArray {
         System.out.println("Maximum sum: " +res1);
         int res2 = dcapproach(arr,0,arr.length-1);
         System.out.println("Maximum sum: " +res2);
+        int res3 = kadensAlgo(arr);
+        System.out.println("Maximum sum: " +res3);
     }
 }
